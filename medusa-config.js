@@ -57,13 +57,30 @@ const plugins = [
     },
   },
   {
-    resolve: `medusa-plugin-strapi`,
+    resolve: "medusa-plugin-strapi-ts",
     options: {
-      strapi_medusa_user: process.env.STRAPI_USER,
-      strapi_medusa_password: process.env.STRAPI_PASSWORD,
-      strapi_url: process.env.STRAPI_URL, // optional
-      strapi_port: process.env.STRAPI_PORT, // optional
-      strapi_protocol: process.env.STRAPI_PROTOCOL, // optional
+      encryption_algorithm: "aes-256-cbc",
+      strapi_protocol: process?.env?.STRAPI_PROTOCOL,
+      strapi_default_user: {
+        username: process?.env?.STRAPI_MEDUSA_USER,
+        password: process?.env?.STRAPI_MEDUSA_PASSWORD,
+        email: process?.env?.STRAPI_MEDUSA_EMAIL,
+        confirmed: true,
+        blocked: false,
+        provider: "local",
+      },
+      strapi_host: process?.env?.STRAPI_SERVER_HOSTNAME,
+      strapi_admin: {
+        username: process?.env?.STRAPI_SUPER_USERNAME || "SuperUser",
+        password: process?.env?.STRAPI_SUPER_PASSWORD || "MedusaStrapi1",
+        email:
+          process?.env?.STRAPI_SUPER_USER_EMAIL ||
+          "support@medusa-commerce.com",
+      },
+      strapi_port: process?.env?.STRAPI_PORT,
+      strapi_secret: process?.env?.STRAPI_SECRET,
+      strapi_public_key: process?.env?.STRAPI_PUBLIC_KEY,
+      strapi_ignore_threshold: 3,
     },
   },
 ];
