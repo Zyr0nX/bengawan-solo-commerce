@@ -21,9 +21,6 @@ try {
   dotenv.config({ path: process.cwd() + "/" + ENV_FILE_NAME });
 } catch (e) {}
 
-const MEDUSA_BACKEND_URL =
-  process.env.MEDUSA_BACKEND_URL || "http://localhost:9000";
-
 // CORS when consuming Medusa from admin
 const ADMIN_CORS =
   process.env.ADMIN_CORS || "http://localhost:7000,http://localhost:7001";
@@ -53,7 +50,6 @@ const plugins = [
       develop: {
         open: process.env.OPEN_BROWSER !== "false",
       },
-      backend: MEDUSA_BACKEND_URL,
     },
   },
   {
@@ -102,8 +98,8 @@ const modules = {
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
 const projectConfig = {
-  jwtSecret: process.env.JWT_SECRET,
-  cookieSecret: process.env.COOKIE_SECRET,
+  jwt_secret: process.env.JWT_SECRET,
+  cookie_secret: process.env.COOKIE_SECRET,
   store_cors: STORE_CORS,
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
