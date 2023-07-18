@@ -77,6 +77,7 @@ const plugins = [
       strapi_secret: process?.env?.STRAPI_SECRET,
       strapi_public_key: process?.env?.STRAPI_PUBLIC_KEY,
       strapi_ignore_threshold: 3,
+      auto_start: true,
     },
   },
 ];
